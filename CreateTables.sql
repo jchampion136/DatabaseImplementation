@@ -12,27 +12,27 @@
     CREATE TABLE BASEPRICE (
         baseprice_Size VARCHAR(30),
         baseprice_CrustType VARCHAR(30),
-        baseprice_CustPrice NUMERIC(5,2) NOT NULL,
-        baseprice_BusPrice NUMERIC(5,2) NOT NULL ,
+        baseprice_CustPrice DECIMAL(5,2) NOT NULL,
+        baseprice_BusPrice DECIMAL(5,2) NOT NULL ,
         PRIMARY KEY (baseprice_Size,baseprice_CrustType)
     );
 
     CREATE TABLE DISCOUNT (
         discount_DiscountID INT PRIMARY KEY AUTO_INCREMENT,
         discount_DiscountName VARCHAR(30) NOT NULL,
-        discount_Amount NUMERIC(5,2) NOT NULL,
+        discount_Amount DECIMAL(5,2) NOT NULL,
         discount_isPercent TINYINT NOT NULL
     );
 
     CREATE TABLE TOPPING (
         topping_TopID INT PRIMARY KEY AUTO_INCREMENT,
         topping_TopName VARCHAR(30) NOT NULL,
-        topping_SmallAMT NUMERIC(5,2) NOT NULL,
-        topping_MedAMT NUMERIC(5,2) NOT NULL,
-        topping_LgAMT NUMERIC(5,2) NOT NULL,
-        topping_XLAMT NUMERIC(5,2) NOT NULL,
-        topping_CustPrice NUMERIC(5,2) NOT NULL,
-        topping_BusPrice NUMERIC(5,2) NOT NULL,
+        topping_SmallAMT DECIMAL(5,2) NOT NULL,
+        topping_MedAMT DECIMAL(5,2) NOT NULL,
+        topping_LgAMT DECIMAL(5,2) NOT NULL,
+        topping_XLAMT DECIMAL(5,2) NOT NULL,
+        topping_CustPrice DECIMAL(5,2) NOT NULL,
+        topping_BusPrice DECIMAL(5,2) NOT NULL,
         topping_MinINVT INT,
         topping_CurINVT INT
     );
@@ -42,8 +42,8 @@
         customer_custID INT,
         ordertable_OrderType VARCHAR(30) NOT NULL,
         ordertable_OrderDateTime DATETIME,
-        ordertable_CustPrice NUMERIC(5,2) NOT NULL,
-        ordertable_BusPrice NUMERIC(5,2) NOT NULL,
+        ordertable_CustPrice DECIMAL(5,2) NOT NULL,
+        ordertable_BusPrice DECIMAL(5,2) NOT NULL,
         ordertable_isComplete TINYINT(1) NOT NULL,
         FOREIGN KEY (customer_custID) REFERENCES CUSTOMER(customer_CustID)
     );
@@ -54,8 +54,8 @@
         pizza_CrustType VARCHAR(30) NOT NULL,
         pizza_PizzaState VARCHAR(30),
         pizza_PizzaDate DATETIME,
-        pizza_CustPrice NUMERIC(5,2) NOT NULL,
-        pizza_BusPrice NUMERIC(5,2) NOT NULL,
+        pizza_CustPrice DECIMAL(5,2) NOT NULL,
+        pizza_BusPrice DECIMAL(5,2) NOT NULL,
         ordertable_OrderID INT NOT NULL,
         FOREIGN KEY (pizza_Size, pizza_CrustType) REFERENCES BASEPRICE(baseprice_Size, baseprice_CrustType),
         FOREIGN KEY (ordertable_OrderID) REFERENCES ORDERTABLE(ordertable_OrderID)
