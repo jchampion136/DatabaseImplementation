@@ -1,111 +1,28 @@
-    DROP SCHEMA IF EXISTS PizzaDB;
-    CREATE SCHEMA PizzaDB;
-    USE PizzaDB;
+INSERT INTO CUSTOMER VALUES (1,'Andrew', 'Wilkes-Krier', '864-254-5861');
+INSERT INTO CUSTOMER VALUES (2,'Matt', 'Engers', '864-474-9953');
+INSERT INTO CUSTOMER VALUES (3,'Frank', 'Turner', '864-232-8944');
+INSERT INTO CUSTOMER VALUES (4,'Milo', 'Auckerman', '864-878-5679');
 
-    CREATE TABLE CUSTOMER (
-        customer_CustID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-        customer_FNAME VARCHAR(30) NOT NULL,
-        customer_LNAME VARCHAR(30) NOT NULL,
-        customer_PhoneNum VARCHAR(30) NOT NULL
-    );
+INSERT INTO BASEPRICE VALUES ('Small', 'Thin', 3.00,0.50);
+INSERT INTO BASEPRICE VALUES ('Small', 'Original', 3.00,0.75);
+INSERT INTO BASEPRICE VALUES ('Small', 'Pan', 3.5,1.00);
+INSERT INTO BASEPRICE VALUES ('Small', 'Gluten-Free', 4.00,2.00);
+INSERT INTO BASEPRICE VALUES ('Medium', 'Thin', 5.00,1.00);
+INSERT INTO BASEPRICE VALUES ('Medium', 'Original', 5.00,1.50);
+INSERT INTO BASEPRICE VALUES ('Medium', 'Pan', 6.00,2.25);
+INSERT INTO BASEPRICE VALUES ('Medium', 'Gluten-Free', 6.25,3.00);
+INSERT INTO BASEPRICE VALUES ('Large', 'Thin', 8.00,1.25);
+INSERT INTO BASEPRICE VALUES ('Large', 'Original', 8.00,2.00);
+INSERT INTO BASEPRICE VALUES ('Large', 'Pan', 9.00,3.00);
+INSERT INTO BASEPRICE VALUES ('Large', 'Gluten-Free', 9.50,4.00);
+INSERT INTO BASEPRICE VALUES ('XLarge', 'Thin', 10.00,2.00);
+INSERT INTO BASEPRICE VALUES ('XLarge', 'Original', 10.00,3.00);
+INSERT INTO BASEPRICE VALUES ('XLarge', 'Pan', 11.50,4.50);
+INSERT INTO BASEPRICE VALUES ('XLarge', 'Gluten-Free', 12.50,6.00);
 
-    CREATE TABLE BASEPRICE (
-        baseprice_Size VARCHAR(30),
-        baseprice_CrustType VARCHAR(30),
-        baseprice_CustPrice DECIMAL(5,2) NOT NULL,
-        baseprice_BusPrice DECIMAL(5,2) NOT NULL ,
-        PRIMARY KEY (baseprice_Size,baseprice_CrustType)
-    );
-
-    CREATE TABLE DISCOUNT (
-        discount_DiscountID INT PRIMARY KEY AUTO_INCREMENT,
-        discount_DiscountName VARCHAR(30) NOT NULL,
-        discount_Amount DECIMAL(5,2),
-        discount_isPercent TINYINT NOT NULL
-    );
-
-    CREATE TABLE TOPPING (
-        topping_TopID INT PRIMARY KEY AUTO_INCREMENT,
-        topping_TopName VARCHAR(30) NOT NULL,
-        topping_SmallAMT DECIMAL(5,2) NOT NULL,
-        topping_MedAMT DECIMAL(5,2) NOT NULL,
-        topping_LgAMT DECIMAL(5,2) NOT NULL,
-        topping_XLAMT DECIMAL(5,2) NOT NULL,
-        topping_CustPrice DECIMAL(5,2) NOT NULL,
-        topping_BusPrice DECIMAL(5,2) NOT NULL,
-        topping_MinINVT INT,
-        topping_CurINVT INT
-    );
-
-    CREATE TABLE ORDERTABLE (
-        ordertable_OrderID INT PRIMARY KEY AUTO_INCREMENT,
-        customer_custID INT,
-        ordertable_OrderType VARCHAR(30) NOT NULL,
-        ordertable_OrderDateTime DATETIME,
-        ordertable_CustPrice DECIMAL(5,2) NOT NULL,
-        ordertable_BusPrice DECIMAL(5,2) NOT NULL,
-        ordertable_isComplete TINYINT(1) NOT NULL,
-        FOREIGN KEY (customer_custID) REFERENCES CUSTOMER(customer_CustID)
-    );
-
-    CREATE TABLE PIZZA (
-        pizza_PizzaID INT PRIMARY KEY AUTO_INCREMENT,
-        pizza_Size VARCHAR(30) NOT NULL,
-        pizza_CrustType VARCHAR(30) NOT NULL,
-        pizza_PizzaState VARCHAR(30),
-        pizza_PizzaDate DATETIME,
-        pizza_CustPrice DECIMAL(5,2) NOT NULL,
-        pizza_BusPrice DECIMAL(5,2) NOT NULL,
-        ordertable_OrderID INT NOT NULL,
-        FOREIGN KEY (pizza_Size, pizza_CrustType) REFERENCES BASEPRICE(baseprice_Size, baseprice_CrustType),
-        FOREIGN KEY (ordertable_OrderID) REFERENCES ORDERTABLE(ordertable_OrderID)
-    );
-
-    CREATE TABLE PIZZA_TOPPING
-    (
-        pizza_PizzaID INT,
-        topping_TopID INT,
-        pizza_topping_isDouble INT NOT NULL,
-        PRIMARY KEY (pizza_PizzaID, topping_TopID),
-        FOREIGN KEY (pizza_PizzaID) REFERENCES PIZZA (pizza_PizzaID),
-        FOREIGN KEY (topping_TopID) REFERENCES TOPPING(topping_TopID)
-    );
-
-    CREATE TABLE PIZZA_DISCOUNT (
-        pizza_PizzaID INT,
-        discount_DiscountID INT,
-        PRIMARY KEY (pizza_PizzaID, discount_DiscountID),
-        FOREIGN KEY (pizza_PizzaID) REFERENCES pizza(pizza_PizzaID),
-        FOREIGN KEY (discount_DiscountID) REFERENCES DISCOUNT(discount_DiscountID)
-    );
-
-    CREATE TABLE ORDER_DISCOUNT (
-        ordertable_OrderID INT,
-        discount_DiscountID INT,
-        PRIMARY KEY (ordertable_OrderID, discount_DiscountID),
-        FOREIGN KEY (ordertable_OrderID) REFERENCES ORDERTABLE(ordertable_OrderID),
-        FOREIGN KEY (discount_DiscountID) REFERENCES DISCOUNT(discount_DiscountID)
-    );
-
-    CREATE TABLE PICKUP (
-        ordertable_OrderID INT PRIMARY KEY,
-        pickup_isPickedUP TINYINT NOT NULL,
-        FOREIGN KEY (ordertable_OrderID) REFERENCES ORDERTABLE(ordertable_OrderID)
-    );
-
-    CREATE TABLE DELIVERY (
-        ordertable_OrderID INT PRIMARY KEY,
-        delivery_HouseNum INT NOT NULL,
-        delivery_Street VARCHAR(30) NOT NULL,
-        delivery_City VARCHAR(30) NOT NULL,
-        delivery_State VARCHAR(2) NOT NULL,
-        delivery_ZIP INT NOT NULL,
-        delivery_isDelivered TINYINT NOT NULL,
-        FOREIGN KEY (ordertable_OrderID) References ORDERTABLE(ordertable_OrderID)
-    );
-
-    CREATE TABLE DINEIN (
-        ordertable_OrderID INT PRIMARY KEY ,
-        dinein_TableNum INT NOT NULL,
-        FOREIGN KEY (ordertable_OrderID) REFERENCES ORDERTABLE(ordertable_OrderID)
-    );
+INSERT INTO DISCOUNT VALUES (1, 'Employee', 15.00, 1);
+INSERT INTO DISCOUNT VALUES (2,'Lunch Special Medium', 1.00, 0);
+INSERT INTO DISCOUNT VALUES (3,'Lunch Special Large', 2.00, 0);
+INSERT INTO DISCOUNT VALUES (4,'Specialty Pizza', 1.50, 0);
+INSERT INTO DISCOUNT VALUES (5,'Happy Hour', 10.00, 1);
+INSERT INTO DISCOUNT VALUES (6,'Gameday Special', 20.00, 1);
