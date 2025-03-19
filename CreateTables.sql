@@ -3,7 +3,7 @@
     USE PizzaDB;
 
     CREATE TABLE CUSTOMER (
-        customer_CustID INT PRIMARY KEY AUTO_INCREMENT,
+        customer_CustID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
         customer_FNAME VARCHAR(30) NOT NULL,
         customer_LNAME VARCHAR(30) NOT NULL,
         customer_PhoneNum VARCHAR(30) NOT NULL
@@ -20,7 +20,7 @@
     CREATE TABLE DISCOUNT (
         discount_DiscountID INT PRIMARY KEY AUTO_INCREMENT,
         discount_DiscountName VARCHAR(30) NOT NULL,
-        discount_Amount DECIMAL(5,2) NOT NULL,
+        discount_Amount DECIMAL(5,2),
         discount_isPercent TINYINT NOT NULL
     );
 
