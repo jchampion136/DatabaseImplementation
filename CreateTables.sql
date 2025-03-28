@@ -107,4 +107,4 @@
         ordertable_OrderID INT PRIMARY KEY ,
         dinein_TableNum INT NOT NULL,
         CONSTRAINT DINEIN_ORDERTABLE_FK FOREIGN KEY (ordertable_OrderID) REFERENCES ORDERTABLE(ordertable_OrderID) ON DELETE CASCADE
-    )
+    );
