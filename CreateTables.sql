@@ -100,7 +100,7 @@
         delivery_State VARCHAR(2) NOT NULL,
         delivery_Zip INT NOT NULL,
         delivery_IsDelivered TINYINT NOT NULL,
-        CONSTRAINT DELIVERY_ODERTABLE_FK FOREIGN KEY (ordertable_OrderID) References ORDERTABLE(ordertable_OrderID) ON DELETE CASCADE
+        CONSTRAINT DELIVERY_ORDERTABLE_FK FOREIGN KEY (ordertable_OrderID) References ORDERTABLE(ordertable_OrderID) ON DELETE CASCADE
     );
 
     CREATE TABLE DINEIN (
