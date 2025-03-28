@@ -60,13 +60,11 @@ INSERT INTO order_discount VALUES (1,3);
 INSERT INTO order_discount VALUES (2,2);
 INSERT INTO order_discount VALUES (2,4);
 INSERT INTO order_discount VALUES (4,6);
-/*INSERT INTO order_discount VALUES (4,4);
-INSERT INTO order_discount VALUES (5,4);*/ /*Also Removed for not being an order discount*/
 INSERT INTO order_discount VALUES (7,1);
 
 INSERT INTO delivery VALUES (4, 115, 'Party Blvd', 'Anderson', 'SC',29621,1);
 INSERT INTO delivery VALUES (6, 6745, 'Wessex St', 'Anderson', 'SC',29621,1);
-INSERT INTO delivery VALUES (7,8879,'Suburban Home','Anderson','SC',29621,1);
+INSERT INTO delivery VALUES (7,8879,'Suburban','Anderson','SC',29621,1);
 
 INSERT INTO dinein VALUES (1,21);
 INSERT INTO dinein VALUES (2,4);
@@ -139,6 +137,5 @@ INSERT INTO pizza_discount VALUES (1, 3);
 INSERT INTO pizza_discount VALUES (2, 2);
 INSERT INTO pizza_discount VALUES (2, 4);
 INSERT INTO pizza_discount VALUES (11, 4);
-/*INSERT INTO pizza_discount VALUES (6, 6);*/ /*Might be just and Order Discount*/
 INSERT INTO pizza_discount VALUES (13, 4);
 
