@@ -4,7 +4,7 @@ SELECT
     pizza_CrustType AS Crust,
     SUM(p.pizza_CustPrice - p.pizza_BusPrice) AS Profit,
     DATE_FORMAT(ordertable_OrderDateTime, '%m/%Y') AS OrderMonth
-FROM PIZZA P
-JOIN ORDERTABLE O on P.ordertable_OrderID = O.ordertable_OrderID
-GROUP BY P.pizza_Size, P.pizza_CrustType, OrderMonth
+FROM pizza p
+JOIN ordertable o on p.ordertable_OrderID = o.ordertable_OrderID
+GROUP BY p.pizza_Size, p.pizza_CrustType, OrderMonth
 ORDER BY Profit;
