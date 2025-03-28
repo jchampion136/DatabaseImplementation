@@ -20,7 +20,7 @@
     CREATE TABLE discount (
         discount_DiscountID INT PRIMARY KEY AUTO_INCREMENT,
         discount_DiscountName VARCHAR(30) NOT NULL,
-        discount_Amount DECIMAL(5,2),
+        discount_Amount DECIMAL(5,2) NOT NULL,
         discount_IsPercent TINYINT NOT NULL
     );
 
@@ -33,18 +33,18 @@
         topping_XLAMT DECIMAL(5,2) NOT NULL,
         topping_CustPrice DECIMAL(5,2) NOT NULL,
         topping_BusPrice DECIMAL(5,2) NOT NULL,
-        topping_MinINVT INT,
-        topping_CurINVT INT
+        topping_MinINVT INT NOT NULL,
+        topping_CurINVT INT NOT NULL
     );
 
     CREATE TABLE ordertable (
         ordertable_OrderID INT PRIMARY KEY AUTO_INCREMENT,
-        customer_CustID INT,
+        customer_CustID INT NULL,
         ordertable_OrderType VARCHAR(30) NOT NULL,
-        ordertable_OrderDateTime DATETIME,
+        ordertable_OrderDateTime DATETIME NOT NULL,
         ordertable_CustPrice DECIMAL(5,2) NOT NULL,
         ordertable_BusPrice DECIMAL(5,2) NOT NULL,
-        ordertable_IsComplete TINYINT(1) NOT NULL,
+        ordertable_IsComplete TINYINT(1) DEFAULT 0,
         CONSTRAINT ordertable_customer_fk FOREIGN KEY (customer_CustID) REFERENCES customer(customer_CustID)
     );
 
@@ -89,7 +89,7 @@
 
     CREATE TABLE pickup (
         ordertable_OrderID INT PRIMARY KEY,
-        pickup_IsPickedUP TINYINT NOT NULL,
+        pickup_IsPickedUP TINYINT NOT NULL DEFAULT 0,
         CONSTRAINT pickup_ordertable_fk FOREIGN KEY (ordertable_OrderID) REFERENCES ordertable(ordertable_OrderID) ON DELETE CASCADE
     );
 
@@ -100,7 +100,7 @@
         delivery_City VARCHAR(30) NOT NULL,
         delivery_State VARCHAR(2) NOT NULL,
         delivery_Zip INT NOT NULL,
-        delivery_IsDelivered TINYINT NOT NULL,
+        delivery_IsDelivered TINYINT NOT NULL DEFAULT 0,
         CONSTRAINT delivery_ordertable_fk FOREIGN KEY (ordertable_OrderID) References ordertable(ordertable_OrderID) ON DELETE CASCADE
     );
 
