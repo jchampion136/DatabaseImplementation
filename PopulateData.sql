@@ -45,13 +45,13 @@ INSERT INTO topping VALUES (15,'Feta Cheese', 1.75, 3.00, 4.00, 5.50, 1.50, 0.18
 INSERT INTO topping VALUES (16,'Goat Cheese', 1.60, 2.75, 4.00, 5.50, 1.50, 0.20, 0, 54);
 INSERT INTO topping VALUES (17,'Bacon', 1.00, 1.50, 2.00, 3.00, 1.50, 0.25, 0, 89);
 
-INSERT INTO ordertable VALUES (1,NULL,'Dine-in','2025-03-05 12:03:00', 19.75,3.68,1);
-INSERT INTO ordertable VALUES (2,NULL, 'Dine-in','2025-04-03 12:05:00',19.78,4.63,1);
-INSERT INTO ordertable VALUES (3,1, 'Pickup','2025-04-03 21:30:00',89.28,19.80,1);
-INSERT INTO ordertable VALUES (4,1,'Delivery','2025-04-20 19:11:00',86.19,20.99,1);
-INSERT INTO ordertable VALUES (5,2,'Pickup','2025-03-02 17:30:00',28.70,7.84,1);
-INSERT INTO ordertable VALUES (6,3,'Delivery','2025-03-02 18:17:00',25.81,3.64,1);
-INSERT INTO ordertable VALUES (7,4, 'Delivery','2025-04-13 20:32:00',37.25,6.00,1);
+INSERT INTO ordertable VALUES (1,NULL,'dinein','2025-03-05 12:03:00', 19.75,3.68,1);
+INSERT INTO ordertable VALUES (2,NULL, 'dinein','2025-04-03 12:05:00',19.78,4.63,1);
+INSERT INTO ordertable VALUES (3,1, 'pickup','2025-03-03 21:30:00',89.28,19.80,1);
+INSERT INTO ordertable VALUES (4,1,'delivery','2025-04-20 19:11:00',68.95,20.99,1);
+INSERT INTO ordertable VALUES (5,2,'pickup','2025-03-02 17:30:00',28.70,7.84,1);
+INSERT INTO ordertable VALUES (6,3,'delivery','2025-03-02 18:17:00',25.81,3.64,1);
+INSERT INTO ordertable VALUES (7,4, 'delivery','2025-04-13 20:32:00',31.66,6.00,1);
 
 INSERT INTO pickup VALUES (3,1);
 INSERT INTO pickup VALUES (5,1);
@@ -138,4 +138,3 @@ INSERT INTO pizza_discount VALUES (2, 2);
 INSERT INTO pizza_discount VALUES (2, 4);
 INSERT INTO pizza_discount VALUES (11, 4);
 INSERT INTO pizza_discount VALUES (13, 4);
-
